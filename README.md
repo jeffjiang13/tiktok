@@ -14,8 +14,8 @@
 # Full Stack TikTok Clone Application
 
 # Tech stack
-TypeScript
-Reactjs
-Nextjs
-Sanity
-Tailwind
+-TypeScript
+-Reactjs
+-Nextjs
+-Sanity
+-Tailwind

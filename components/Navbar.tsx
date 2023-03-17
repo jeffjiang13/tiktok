@@ -17,14 +17,14 @@ const Navbar = () => {
   const [searchValue, setSearchValue] = useState('');
   const router = useRouter();
   const { userProfile, addUser, removeUser } = useAuthStore();
-  
+
   useEffect(() => {
     setUser(userProfile);
   }, [userProfile]);
 
   const handleSearch = (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    
+
     if(searchValue) {
       router.push(`/search/${searchValue}`);
     }

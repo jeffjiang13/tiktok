@@ -40,12 +40,15 @@ const Sidebar: NextPage = () => {
               </div>
             </Link>
           </div>
-          
+
           <Discover />
           <SuggestedAccounts
             fetchAllUsers={fetchAllUsers}
             allUsers={allUsers}
           />
+          <br />
+          <br />
+          <br />
           <Footer />
         </div>
       )}

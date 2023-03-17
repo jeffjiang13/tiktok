@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/jeffjiang13/tiktok">
-    <img src="client/src/assets/house.png" alt="rent" width="200" height="50">
+    <img src="utils/tiktik-logo.png" alt="rent" width="200" height="50">
   </a>
 
 </div>
@@ -13,9 +13,12 @@
 
 # Full Stack TikTok Clone Application
 
+Our TikTok Clone Application includes Google Auth, the ability to upload, publish, share, comment on, and like the videos; filtering by categories and advanced search functionalities, profile pages, suggested accounts, custom responsive design, and much more.
+
 # Tech stack
--TypeScript
--Reactjs
--Nextjs
--Sanity
--Tailwind
+
+- TypeScript
+- Reactjs
+- Nextjs
+- Sanity
+- Tailwind

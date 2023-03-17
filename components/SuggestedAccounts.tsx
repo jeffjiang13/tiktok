@@ -53,6 +53,8 @@ const SuggestedAccounts: NextPage<IProps> = ({ fetchAllUsers, allUsers }) => {
           </Link>
         ))}
       </div>
+      <br />
+
     </div>
   );
 };

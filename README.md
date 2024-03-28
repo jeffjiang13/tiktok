@@ -2,11 +2,11 @@
 
 <div align="center">
   <a href="https://github.com/jeffjiang13/tiktok">
-    <img src="utils/tiktik-logo.png" alt="TikTik Logo" width="200" height="50" />
+    <img src="utils/tiktok_logo.webp" alt="TikTik Logo" width="200" height="50" />
   </a>
 </div>
 
-<h1 align="center">TikTik - A Full Stack TikTok Clone</h1>
+<h1 align="center">TikTok Clone - A Full Stack TikTok Clone</h1>
 
 <p align="center">
   <strong>Explore the modern web with our TikTok Clone Application!</strong><br>
@@ -80,6 +80,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/jeffjiang9) - jeff.jiang13@gmail.com
+Name - [@twitter](https://twitter.com/jeffjiang9) - jeff.jiang13@gmail.com
 
 Project Link: [https://github.com/jeffjiang13/tiktok](https://github.com/jeffjiang13/tiktok)

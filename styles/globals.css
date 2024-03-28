@@ -34,3 +34,8 @@ a {
 ::-webkit-scrollbar-track {
   background-color: transparent;
 }
+/* Add or update this in your CSS */
+.scrollable-sidebar {
+  max-height: 100vh; /* Or adjust based on your layout */
+  overflow-y: auto; /* Use 'scroll' to always show scrollbar */
+}

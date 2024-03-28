@@ -10,7 +10,7 @@ import { GoogleLogin, googleLogout  } from '@react-oauth/google';
 import useAuthStore from '../store/authStore';
 import { IUser } from '../types';
 import { createOrGetUser } from '../utils';
-import Logo from '../utils/tiktik-logo.png';
+import Logo from '../utils/TikTok_logo.webp';
 
 const Navbar = () => {
   const [user, setUser] = useState<IUser | null>();
@@ -51,8 +51,8 @@ const Navbar = () => {
           <input
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
-            className='bg-primary p-3 md:text-md font-medium border-2 border-gray-100 focus:outline-none focus:border-2 focus:border-gray-300 w-[300px] md:w-[350px] rounded-full  md:top-0'
-            placeholder='Search accounts and videos'
+            className='bg-primary p-3 md:text-md font-medium border-2 border-gray-100 focus:outline-none focus:border-2 focus:border-gray-300 w-[300px] md:w-[400px] rounded-full  md:top-0'
+            placeholder='Search'
           />
           <button
             onClick={handleSearch}

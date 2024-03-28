@@ -2,7 +2,7 @@
 
 <div align="center">
   <a href="https://github.com/jeffjiang13/tiktok">
-    <img src="utils/TikTok_logo.webp" alt="TikTok Logo" width="250" height="100" />
+    <img src="utils/TikTok_logo.webp" alt="TikTok Logo" width="300" height="100" />
   </a>
 </div>
 

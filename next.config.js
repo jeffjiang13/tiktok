@@ -7,7 +7,8 @@ const nextConfig = {
       'cdn.pixabay.com',
       'p16-amd-va.tiktokcdn.com',
       'image.shutterstock.com',
-      'jeffjiang.vercel.app'
+      'jeffjiang.vercel.app',
+      'cdn.sanity.io'
     ],
   },
 };

@@ -11,12 +11,14 @@ import useAuthStore from '../store/authStore';
 import { IUser } from '../types';
 import { createOrGetUser } from '../utils';
 import Logo from '../utils/TikTok_logo.webp';
+import LoginModal from './LoginModal'; // Adjust the import path as needed
 
 const Navbar = () => {
   const [user, setUser] = useState<IUser | null>();
   const [searchValue, setSearchValue] = useState('');
   const router = useRouter();
   const { userProfile, addUser, removeUser } = useAuthStore();
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   useEffect(() => {
     setUser(userProfile);
@@ -66,7 +68,7 @@ const Navbar = () => {
         {user ? (
           <div className='flex gap-5 md:gap-10'>
             <Link href='/upload'>
-              <button className='border-2 px-2 md:px-4 text-md font-semibold flex items-center gap-2'>
+              <button className='border-2 px-2 md:px-4 text-md font-semibold flex items-center gap-2 hover:bg-gray-200'>
                 <IoMdAdd className='text-xl' />{' '}
                 <span className='hidden md:block'>Upload </span>
               </button>
@@ -86,7 +88,7 @@ const Navbar = () => {
             )}
               <button
                 type='button'
-                className=' border-2 p-2 rounded-full cursor-pointer outline-none shadow-md'
+                className=' border-2 p-2 rounded-full cursor-pointer outline-none shadow-md hover:bg-gray-200'
                 onClick={() => {
                   googleLogout();
                   removeUser();
@@ -96,10 +98,18 @@ const Navbar = () => {
               </button>
           </div>
         ) : (
-            <GoogleLogin
-              onSuccess={(response) => createOrGetUser(response, addUser)}
-              onError={() => console.log('Login Failed')}
-            />
+          <div>
+          <button
+          onClick={() => setIsLoginModalOpen(true)}
+          className=" pt-2 pb-2 px-2 md:px-6 text-md font-bold flex items-center gap-2 rounded-md bg-red-500 text-white"
+        >
+          Log in
+        </button>
+        <LoginModal
+          isOpen={isLoginModalOpen}
+          onClose={() => setIsLoginModalOpen(false)}
+        />
+        </div>
         )}
       </div>
     </div>

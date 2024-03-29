@@ -86,7 +86,7 @@ const Sidebar: NextPage = () => {
               {user ? (
               user.image ? (
                 <Link href={`/profile/${user._id}`}>
-                  <div className={pathname === `/profile/${user._id}` ? activeLink : normalLink}>
+                  <div className={pathname === `/profile/[userId]` ? activeLink : normalLink}>
                     <Image
                       className='rounded-full cursor-pointer'
                       src={user.image}
@@ -120,8 +120,6 @@ const Sidebar: NextPage = () => {
             fetchAllUsers={fetchAllUsers}
             allUsers={allUsers}
           />
-          <br />
-          <br />
           <Footer />
         </div>
       )}

@@ -32,8 +32,6 @@ const Discover: NextPage = () => {
           </Link>
         ))}
       </div>
-      <br />
-
     </div>
   );
 };

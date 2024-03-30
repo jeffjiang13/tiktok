@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -23,7 +23,7 @@ const Navbar = () => {
   const { userProfile, addUser, removeUser } = useAuthStore();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  let dropdownTimeout: ReturnType<typeof setTimeout>; // Correctly typed
+  const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     setUser(userProfile);
@@ -36,22 +36,36 @@ const Navbar = () => {
       router.push(`/search/${searchValue}`);
     }
   };
-  const showDropdown = () => {
-    clearTimeout(dropdownTimeout); // Clear any existing timeout to prevent hiding
-    setIsDropdownOpen(true);
-  };
+ // Show dropdown immediately when hovering over the profile icon
+ const showDropdown = () => {
+  if (dropdownTimeout.current) {
+    clearTimeout(dropdownTimeout.current);
+  }
+  setIsDropdownOpen(true);
+};
 
-  const hideDropdown = () => {
-    // Set a timeout to hide the dropdown after 3 seconds
-    dropdownTimeout = setTimeout(() => {
-      setIsDropdownOpen(false);
-    }, 2000);
-  };
+// Delay hiding the dropdown, allowing the user to move to the dropdown menu
+const startHideDropdown = () => {
+  dropdownTimeout.current = setTimeout(() => {
+    setIsDropdownOpen(false);
+  }, 2000); // Adjust the timeout as needed
+};
 
-  // Remember to clear the timeout if the component unmounts to prevent memory leaks
-  useEffect(() => {
-    return () => clearTimeout(dropdownTimeout);
-  }, []);
+// Cancel the hide action if moving back to dropdown or profile icon
+const cancelHideDropdown = () => {
+  if (dropdownTimeout.current) {
+    clearTimeout(dropdownTimeout.current);
+  }
+};
+
+// Cleanup on component unmount
+useEffect(() => {
+  return () => {
+    if (dropdownTimeout.current) {
+      clearTimeout(dropdownTimeout.current);
+    }
+  };
+}, []);
   return (
     <div className='w-full flex justify-between items-center border-b-2 border-gray-200 py-2 px-4'>
       <Link href='/'>
@@ -85,11 +99,17 @@ const Navbar = () => {
         </form>
       </div>
 
-      <div className="relative">
+      <div className="relative" onMouseLeave={startHideDropdown}>
         {user ? (
-          <div>
+          <div className='flex gap-5 md:gap-10'>
+          <Link href='/upload'>
+              <button className='border-2 px-2 md:px-4 text-md font-semibold flex items-center gap-2 hover:bg-gray-200'>
+                <IoMdAdd className='text-xl' />{' '}
+                <span className='hidden md:block'>Upload</span>
+              </button>
+            </Link>
             {/* Toggling dropdown on click */}
-            <div onMouseEnter={showDropdown} onMouseLeave={hideDropdown} className="cursor-pointer">
+            <div onMouseEnter={showDropdown} className="cursor-pointer">
                   <Image
                     src={user.image || "/default-avatar.png"}
                     alt="Profile"
@@ -101,29 +121,22 @@ const Navbar = () => {
 
             {/* Dropdown menu */}
             {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+            <div onMouseEnter={cancelHideDropdown} className="font-semibold text-md absolute mt-[3rem] right-0 w-48 bg-white rounded-md shadow-xl py-1 z-50">
                 <Link href={`/profile/${user._id}`}>
-                  <a onClick={(e)=> {
-                    setIsDropdownOpen(false); // Explicitly close the dropdown
-                  }}
-                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  >
-                  <AiOutlineUser className='inline ml-1 text-2xl' /> View profile</a></Link>
-                <Link href="/following"><a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"><RiHeartFill className="inline ml-1 text-2xl"/> Following</a></Link>
-                <Link href="/friends"><a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"><FiUsers className="inline ml-1 text-2xl"/> Friends</a></Link>
-                <Link href="/explore"><a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"><AiOutlineSearch className="inline ml-1 text-2xl"/> Explore</a></Link>
-                <Link href="/live"><a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"><MdOutlineLiveTv className="inline ml-1 text-2xl"/> Live</a></Link>
-                <Link href="/settings"><a className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"><AiOutlineSetting className="inline ml-1 text-2xl"/> Settings</a></Link>
+                  <a className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"><AiOutlineUser className='inline ml-1 text-2xl mr-1' /> View profile</a></Link>
+                <Link href="/following"><a className="block px-4 py-2 text-gray-700 hover:bg-gray-100"><RiHeartFill className="inline ml-1 text-2xl mr-1"/> Following</a></Link>
+                <Link href="/friends"><a className="block px-4 py-2 text-gray-700 hover:bg-gray-100"><FiUsers className="inline ml-1 text-2xl mr-1"/> Friends</a></Link>
+                <Link href="/explore"><a className="block px-4 py-2 text-gray-700 hover:bg-gray-100"><AiOutlineSearch className="inline ml-1 text-2xl mr-1"/> Explore</a></Link>
+                <Link href="/live"><a className="block px-4 py-2 text-gray-700 hover:bg-gray-100"><MdOutlineLiveTv className="inline ml-1 text-2xl mr-1"/> LIVE</a></Link>
+                <Link href="/settings"><a className="block px-4 py-2 text-gray-700 hover:bg-gray-100"><AiOutlineSetting className="inline ml-1 text-2xl mr-1"/> Settings</a></Link>
                 <button
                   onClick={(e) => {
-                    e.stopPropagation(); // Prevents click from toggling dropdown again
                     googleLogout();
                     removeUser();
-                    setIsDropdownOpen(false); // Explicitly close the dropdown
                   }}
-                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  className="block w-full text-left px-4 py-2 text-md text-gray-700 hover:bg-gray-100 font-semibold border-t border-gray-200"
                 >
-                  <AiOutlineLogout className="inline ml-1 text-2xl font-bold" />  Log out
+                  <AiOutlineLogout className="inline ml-1 text-2xl mr-1" />  Log out
                 </button>
               </div>
             )}

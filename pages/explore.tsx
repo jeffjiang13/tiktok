@@ -14,7 +14,7 @@ const Home = ({ videos }: IProps) => {
   return (
     <div className=''>
       {videos.length ? (
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-4 p-4'>
+        <div className='grid grid-cols-1 md:grid-cols-4 gap-4 p-1'>
           {videos.map((video: Video) => (
             <VideoCard post={video} isShowingOnHome key={video._id} />
           ))}

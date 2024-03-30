@@ -16,6 +16,7 @@ import {
 import { RiVideoAddFill, RiHeartFill } from 'react-icons/ri';
 import { FiUsers } from 'react-icons/fi';
 import { IUser } from '../types';
+import LoginModal from './LoginModal'; // Adjust the import path as needed
 
 import SuggestedAccounts from './SuggestedAccounts';
 import Discover from './Discover';
@@ -27,6 +28,8 @@ const Sidebar: NextPage = () => {
   const { fetchAllUsers, allUsers }: any = useAuthStore();
   const { userProfile } = useAuthStore(); // Assuming useAuthStore returns a userProfile
   const [user, setUser] = useState<IUser | null>();
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
   useEffect(() => {
     setUser(userProfile);
   }, [userProfile]);
@@ -43,14 +46,14 @@ const Sidebar: NextPage = () => {
         {showSidebar ? <ImCancelCircle /> : <AiOutlineMenu />}
       </div>
       {showSidebar && (
-        <div className='xl:w-400 w-20 flex flex-col justify-start mb-10 border-r-2 border-gray-100 xl:border-0 p-3 scrollable-sidebar'>
+        <div className='xl:w-400 w-20 flex flex-col justify-start mb-10 border-r-2 border-gray-100 xl:border-0 p-2 scrollable-sidebar'>
           <div className='xl:border-b-2 border-gray-200 xl:pb-4'>
             <Link href='/'>
               <div className={pathname === '/' ? activeLink : normalLink}>
                 <p className='text-2xl'>
                   <AiFillHome className=''/>
                 </p>
-                <span className='capitalize text-xl hidden xl:block'>
+                <span className='capitalize text-lg hidden font-bold xl:block'>
                   For You
                 </span>
               </div>
@@ -59,26 +62,26 @@ const Sidebar: NextPage = () => {
                 <Link href='/following'>
                   <div className={pathname === '/following' ? activeLink : normalLink}>
                     <RiHeartFill className='text-2xl'/>
-                    <span className='capitalize text-xl hidden xl:block'>Following</span>
+                    <span className='capitalize text-lg hidden font-bold xl:block'>Following</span>
                   </div>
                 </Link>
                 <Link href='/friends'>
                   <div className={pathname === '/friends' ? activeLink : normalLink}>
                     <FiUsers className='text-2xl'/>
-                    <span className='capitalize text-xl hidden xl:block'>Friends</span>
+                    <span className='capitalize text-lg hidden font-bold xl:block'>Friends</span>
                   </div>
                 </Link>
                 <Link href='/explore'>
                   <div className={pathname === '/explore' ? activeLink : normalLink}>
                     <AiOutlineSearch className='text-2xl'/>
-                    <span className='capitalize text-xl hidden xl:block'>Explore</span>
+                    <span className='capitalize text-lg hidden font-bold xl:block'>Explore</span>
                   </div>
                 </Link>
                 {/* Live Streams */}
                 <Link href='/live'>
                   <div className={pathname === '/live' ? activeLink : normalLink}>
                     <MdOutlineLiveTv className='text-2xl'/>
-                    <span className='capitalize text-xl hidden xl:block'>Live</span>
+                    <span className='capitalize text-lg hidden font-bold xl:block'>LIVE</span>
                   </div>
                 </Link>
 
@@ -94,24 +97,28 @@ const Sidebar: NextPage = () => {
                       width={30}
                       height={30}
                     />
-                    <span className='capitalize text-xl hidden xl:block'>Profile</span>
+                    <span className='capitalize text-lg hidden font-bold xl:block'>Profile</span>
                     </div>
                 </Link>
               ) : (
                 <Link href='/profile'>
                   <div className={pathname === '/profile' ? activeLink : normalLink}>
                     <AiOutlineUser className='text-2xl' />
-                    <span className='capitalize text-xl hidden xl:block'>Profile</span>
+                    <span className='capitalize text-lg hidden font-bold xl:block'>Profile</span>
                   </div>
                 </Link>
               )
             ) : (
-              <Link href='/auth/login'>
+              <a
+              className=""
+              onClick={() => setIsLoginModalOpen(true)}
+            >
                 <div className={normalLink}>
                   <AiOutlineUser className='text-2xl' />
-                  <span className='capitalize text-xl hidden xl:block'>Profile</span>
+                  <span className='capitalize text-lg hidden font-bold xl:block'>Profile</span>
                 </div>
-              </Link>
+                </a>
+
             )}
               </>
           </div>
@@ -122,6 +129,12 @@ const Sidebar: NextPage = () => {
           />
           <Footer />
         </div>
+          )}
+          {isLoginModalOpen && (
+              <LoginModal
+                  isOpen={isLoginModalOpen}
+                  onClose={() => setIsLoginModalOpen(false)}
+              />
       )}
     </div>
   );

@@ -26,7 +26,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <meta name="author" content="Jeff Jiang" />
         <meta name="creator" content="This is an awesome application made by Jeff Jiang" />
       </Head>
-      <div className='xl:w-[1200px] m-auto overflow-hidden h-[100vh]'>
+      <div className=' m-auto overflow-hidden h-[100vh]'>
         <Navbar />
         <div className='flex gap-6 md:gap-20 '>
           <div className='h-[92vh] overflow-hidden xl:hover:overflow-auto'>

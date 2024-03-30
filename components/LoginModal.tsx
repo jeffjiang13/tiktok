@@ -27,9 +27,16 @@ interface LoginModalProps {
         <h2 className="text-4xl font-bold mb-4 mt-8">Log in to TikTok</h2>
         <p className="mb-6">Please login to continue.</p>
         <GoogleLogin
-            onSuccess={(response) => createOrGetUser(response, addUser)}
-            onError={() => console.log('Login Failed')}
-        />
+            onSuccess={async (response) => {
+              // Assuming createOrGetUser is an async function that needs a token response
+              await createOrGetUser(response, addUser); // Ensure this is awaited if asynchronous
+              onClose(); // This will call setIsLoginModalOpen(false) from the parent component
+            }}
+            onError={() => {
+              console.log('Login Failed');
+              // Optionally close the modal on error or give feedback to the user
+            }}
+          />
         <p className="mt-10 text-center text-xs text-gray-400">By continuing, you agree to TikTok&apos;s Terms of Service and</p>
         <p className="mb-10 text-center text-xs text-gray-400">confirm that you have read TikTok&apos;s Privacy Policy.</p>
       </div>

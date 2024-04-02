@@ -5,16 +5,17 @@ import { useRouter } from 'next/router';
 import { AiOutlineUser, AiOutlineLogout, AiOutlineSetting } from 'react-icons/ai';
 import { BiSearch } from 'react-icons/bi';
 import { IoMdAdd } from 'react-icons/io';
-import { GoogleLogin, googleLogout } from '@react-oauth/google';
+import { googleLogout } from '@react-oauth/google';
 import { FiUsers } from 'react-icons/fi';
 import { RiHeartFill } from 'react-icons/ri';
 import { MdOutlineLiveTv } from 'react-icons/md';
 import {AiOutlineSearch} from 'react-icons/ai';
 import useAuthStore from '../store/authStore';
 import { IUser } from '../types';
-import { createOrGetUser } from '../utils';
 import Logo from '../utils/TikTok_logo.webp';
-import LoginModal from './LoginModal'; // Adjust the import path as needed
+import LoginModal from './LoginModal';
+import { BiMessageAltDots } from "react-icons/bi";
+import { TiLocationArrowOutline } from "react-icons/ti";
 
 const Navbar = () => {
   const [user, setUser] = useState<IUser | null>();
@@ -48,7 +49,7 @@ const Navbar = () => {
 const startHideDropdown = () => {
   dropdownTimeout.current = setTimeout(() => {
     setIsDropdownOpen(false);
-  }, 2000); // Adjust the timeout as needed
+  }, 1000); // Adjust the timeout as needed
 };
 
 // Cancel the hide action if moving back to dropdown or profile icon
@@ -67,9 +68,9 @@ useEffect(() => {
   };
 }, []);
   return (
-    <div className='w-full flex justify-between items-center border-b-2 border-gray-200 py-2 px-4'>
+    <div className='w-full flex justify-between items-center border-b-2 border-gray-200 py-1 px-4'>
       <Link href='/'>
-        <div className='w-[100px] md:w-[129px] md:h-[30px] h-[38px]'>
+        <div className='w-[90px] md:w-[125px] md:h-[30px] h-[38px]'>
           <Image
             className='cursor-pointer'
             src={Logo}
@@ -101,22 +102,24 @@ useEffect(() => {
 
       <div className="relative" onMouseLeave={startHideDropdown}>
         {user ? (
-          <div className='flex gap-5 md:gap-10'>
-          <Link href='/upload'>
-              <button className='border-2 px-2 md:px-4 text-md font-semibold flex items-center gap-2 hover:bg-gray-200'>
-                <IoMdAdd className='text-xl' />{' '}
-                <span className='hidden md:block'>Upload</span>
+          <div className="flex items-center gap-2 md:gap-4"> {/* Adjust the gap as needed */}
+            <Link href="/upload">
+              <button className=" mr-2 border px-2 py-1.5 rounded-sm md:px-4 text-md font-semibold flex items-center hover:bg-gray-200">
+                <IoMdAdd className="text-lg" />
+                <span className="hidden md:block">Upload</span>
               </button>
             </Link>
-            {/* Toggling dropdown on click */}
-            <div onMouseEnter={showDropdown} className="cursor-pointer">
-                  <Image
-                    src={user.image || "/default-avatar.png"}
-                    alt="Profile"
-                    width={40}
-                    height={40}
-                    className="rounded-full"
-                  />
+            <TiLocationArrowOutline className="text-4xl mb-2 cursor-pointer" title="Messages" />
+            <BiMessageAltDots className="text-3xl cursor-pointer" title="Inbox" />
+
+            <div onMouseEnter={showDropdown} className="cursor-pointer mr-2 ml-2">
+              <Image
+                src={user.image || "/default-avatar.png"}
+                alt="Profile"
+                width={36}
+                height={36}
+                className="rounded-full"
+              />
             </div>
 
             {/* Dropdown menu */}

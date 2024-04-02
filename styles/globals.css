@@ -39,3 +39,14 @@ a {
   max-height: 100vh; /* Or adjust based on your layout */
   overflow-y: auto; /* Use 'scroll' to always show scrollbar */
 }
+.video{
+  width: 400px;
+  height: 500px;
+  object-fit: cover
+}
+
+@media (max-width: 768px) {
+  .video {
+    height:400px
+  }
+}

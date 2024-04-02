@@ -9,11 +9,10 @@ import Image from 'next/image';
 import {
   AiFillHome,
   AiOutlineMenu,
-  AiFillBell,
   AiOutlineUser,
   AiOutlineSearch,
 } from 'react-icons/ai';
-import { RiVideoAddFill, RiHeartFill } from 'react-icons/ri';
+import { RiHeartFill } from 'react-icons/ri';
 import { FiUsers } from 'react-icons/fi';
 import { IUser } from '../types';
 import LoginModal from './LoginModal'; // Adjust the import path as needed

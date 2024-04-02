@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi';
 import { BsFillPlayFill, BsFillPauseFill } from 'react-icons/bs';
 import { GoVerified } from 'react-icons/go';
-import { BsPlay } from 'react-icons/bs';
+import { BsPlay, BsPause } from 'react-icons/bs'; // Assuming these are the icons you're using
+import { HiOutlineVolumeUp, HiOutlineVolumeOff } from 'react-icons/hi';
 
 import { Video } from './../types';
 
@@ -43,7 +44,7 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
           <video
             loop
             src={video.asset.url}
-            className='w-[250px] md:w-full rounded-xl cursor-pointer'
+            className='w-[250px] h-10 md:w-full rounded-xl cursor-pointer'
           ></video>
         </Link>
             <div className='flex gap-2 -mt-8 items-center ml-4'>
@@ -98,45 +99,37 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
         </div>
       </div>
 
-      <div className='lg:ml-20 flex gap-4 relative'>
-        <div
+      <div className='lg:ml-20 flex flex-col pb-1'>
+      <div
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
-          className='rounded-3xl'
-        >
-          <Link href={`/detail/${_id}`}>
-            <video
-              loop
-              ref={videoRef}
-              src={video.asset.url}
-              className='lg:w-[600px] h-[300px] md:h-[400px] lg:h-[528px] w-[200px] rounded-2xl cursor-pointer bg-gray-100'
+        className='rounded-3xl relative'>
+        <Link href={`/detail/${_id}`}>
+          <video
+            loop
+            ref={videoRef}
+            src={video.asset.url}
+            className='rounded-md cursor-pointer bg-gray-100 video'
             ></video>
-          </Link>
+        </Link>
 
-          {isHover && (
-            <div className='absolute bottom-6 cursor-pointer left-8 md:left-14 lg:left-0 flex gap-10 lg:justify-between w-[100px] md:w-[50px] lg:w-[600px] p-3'>
-              {playing ? (
-                <button onClick={onVideoPress}>
-                  <BsFillPauseFill className='text-black text-2xl lg:text-4xl' />
-                </button>
-              ) : (
-                <button onClick={onVideoPress}>
-                  <BsFillPlayFill className='text-black text-2xl lg:text-4xl' />
-                </button>
-              )}
-              {isVideoMuted ? (
-                <button onClick={() => setIsVideoMuted(false)}>
-                  <HiVolumeOff className='text-black text-2xl lg:text-4xl' />
-                </button>
-              ) : (
-                <button onClick={() => setIsVideoMuted(true)}>
-                  <HiVolumeUp className='text-black text-2xl lg:text-4xl' />
-                </button>
-              )}
-            </div>
+        {isHover && (
+          <>
+            <div className='absolute bottom-5 left-4 flex justify-between items-center'>
+              <button onClick={onVideoPress} className='text-white text-2xl lg:text-3xl'>
+                {playing ? <BsFillPauseFill /> : <BsFillPlayFill />}
+              </button>
+              </div>
+              <div className='absolute bottom-5 right-4 flex justify-between items-center'>
+
+              <button onClick={() => setIsVideoMuted(!isVideoMuted)} className='text-white text-2xl lg:text-3xl'>
+                {isVideoMuted ? <HiOutlineVolumeOff /> : <HiOutlineVolumeUp />}
+              </button>
+              </div>
+          </>
           )}
-        </div>
       </div>
+    </div>
     </div>
   );
 };

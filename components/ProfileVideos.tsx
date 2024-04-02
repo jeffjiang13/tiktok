@@ -59,7 +59,7 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
             ref={videoRef}
             src={video.asset.url}
             className='w-full rounded-md cursor-pointer bg-gray-100'
-            style={{width: '300px', height: '370px', objectFit: 'cover' }}
+            style={{width: '300px', height: '260px', objectFit: 'cover' }}
           ></video>
         </Link>
 
@@ -98,8 +98,7 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
           <p className='font-normal mb-2'>{caption}</p>
         </Link>
 
-        {/* Container adjusted for flex space-between */}
-        <div className='flex justify-between items-center'>
+        {/* <div className='flex justify-between items-center'>
           <div className='flex items-center gap-3'>
             <div className='w-8 h-8'>
               <Link href={`/profile/${postedBy?._id}`}>
@@ -123,13 +122,11 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
               </a>
             </Link>
           </div>
-
-          {/* Likes count with heart icon aligned to the right */}
           <div className='flex items-center gap-1'>
             <AiOutlineHeart className='' />
             <span>{likes?.length || 0}</span>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

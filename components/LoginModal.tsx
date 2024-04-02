@@ -14,27 +14,23 @@ interface LoginModalProps {
     const { addUser } = useAuthStore();
 
 
-  // Only render the modal if it is "open"
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
-      {/* Added red border classes here */}
       <div className="relative bg-white py-4 rounded-lg shadow-lg flex flex-col px-10 items-center border-2 border-red-500">
         <button onClick={onClose} className="p-1 absolute top-2 right-2 text-3xl text-black bg-gray-100 rounded-full hover:bg-gray-200 transition duration-150 ease-in-out">
-          <AiOutlineClose className="text-2xl" /> {/* Ensure icon is visible */}
+          <AiOutlineClose className="text-2xl" />
         </button>
         <h2 className="text-4xl font-bold mb-4 mt-8">Log in to TikTok</h2>
         <p className="mb-6">Please login to continue.</p>
         <GoogleLogin
             onSuccess={async (response) => {
-              // Assuming createOrGetUser is an async function that needs a token response
-              await createOrGetUser(response, addUser); // Ensure this is awaited if asynchronous
-              onClose(); // This will call setIsLoginModalOpen(false) from the parent component
+              await createOrGetUser(response, addUser);
+              onClose();
             }}
             onError={() => {
               console.log('Login Failed');
-              // Optionally close the modal on error or give feedback to the user
             }}
           />
         <p className="mt-10 text-center text-xs text-gray-400">By continuing, you agree to TikTok&apos;s Terms of Service and</p>

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { GoVerified } from 'react-icons/go';
 import Image from 'next/image';
 import Link from 'next/link';
-import { MdOutlineCancel } from 'react-icons/md';
+import { AiOutlineClose } from 'react-icons/ai';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { HiVolumeUp, HiVolumeOff } from 'react-icons/hi';
 
@@ -79,10 +79,10 @@ const Detail = ({ postDetails }: IProps) => {
     <>
       {post && (
         <div className='flex w-full absolute left-0 top-0 bg-white flex-wrap lg:flex-nowrap'>
-          <div className='relative flex-2 w-[1000px] lg:w-9/12 flex justify-center items-center bg-blurred-img bg-no-repeat bg-cover bg-center'>
+<div className='relative flex-2 w-[1000px] lg:w-9/12 flex justify-center items-center bg-no-repeat bg-cover bg-center' style={{ backgroundColor: '#141414' }}>
             <div className='opacity-90 absolute top-6 left-2 lg:left-6 flex gap-6 z-50'>
               <p className='cursor-pointer ' onClick={() => router.back()}>
-                <MdOutlineCancel className='text-white text-[35px] hover:opacity-90' />
+              <AiOutlineClose className='text-white m-1 p-1 text-[35px] bg-gray-700 hover:bg-gray-900 rounded-full cursor-pointer' />
               </p>
             </div>
             <div className='relative'>

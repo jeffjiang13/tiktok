@@ -124,7 +124,7 @@ useEffect(() => {
 
             {/* Dropdown menu */}
             {isDropdownOpen && (
-            <div onMouseEnter={cancelHideDropdown} className="font-semibold text-md absolute mt-[3rem] right-0 w-48 bg-white rounded-md shadow-xl py-1 z-50">
+            <div onMouseEnter={cancelHideDropdown} className="font-semibold text-md absolute mt-[22rem] right-0 w-48 bg-white rounded-md shadow-xl py-1 z-50">
                 <Link href={`/profile/${user._id}`}>
                   <a className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"><AiOutlineUser className='inline ml-1 text-2xl mr-1' /> View profile</a></Link>
                 <Link href="/following"><a className="block px-4 py-2 text-gray-700 hover:bg-gray-100"><RiHeartFill className="inline ml-1 text-2xl mr-1"/> Following</a></Link>

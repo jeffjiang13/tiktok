@@ -21,7 +21,7 @@ const SuggestedAccounts: NextPage<IProps> = ({ fetchAllUsers, allUsers }) => {
     .slice(0, allUsers.length);
 
   return (
-<div className='border-t border-gray-200 xl:border-b-2 xl:border-t-0 border-gray-200 pb-4'>
+<div className='border-t xl:border-b xl:border-t-0 border-gray-200 pb-4'>
       <p className='text-gray-500 font-semibold m-3 mt-4 hidden xl:block'>
         Suggested accounts
       </p>

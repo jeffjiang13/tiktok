@@ -3,22 +3,20 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { ImCancelCircle } from 'react-icons/im';
-import { MdOutlineLiveTv } from 'react-icons/md';
+import { MdOutlineExplore } from 'react-icons/md';
 import Image from 'next/image';
 
 import {
   AiFillHome,
   AiOutlineMenu,
   AiOutlineUser,
-  AiOutlineSearch,
 } from 'react-icons/ai';
-import { RiHeartFill } from 'react-icons/ri';
+import { RiUserFollowLine, RiLiveLine } from "react-icons/ri";
 import { FiUsers } from 'react-icons/fi';
 import { IUser } from '../types';
 import LoginModal from './LoginModal'; // Adjust the import path as needed
 
 import SuggestedAccounts from './SuggestedAccounts';
-import Discover from './Discover';
 import Footer from './Footer';
 import useAuthStore from '../store/authStore';
 const Sidebar: NextPage = () => {
@@ -33,9 +31,9 @@ const Sidebar: NextPage = () => {
     setUser(userProfile);
   }, [userProfile]);
 
-  const activeLink = 'flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-red-500 rounded';
+  const activeLink = 'flex items-center gap-3 hover:bg-primary p-2.5 justify-center xl:justify-start cursor-pointer font-semibold text-red-500 rounded';
 
-  const normalLink = 'flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold rounded';
+  const normalLink = 'flex items-center gap-3 hover:bg-primary p-2.5 justify-center xl:justify-start cursor-pointer font-semibold rounded';
   return (
     <div>
       <div
@@ -45,8 +43,8 @@ const Sidebar: NextPage = () => {
         {showSidebar ? <ImCancelCircle /> : <AiOutlineMenu />}
       </div>
       {showSidebar && (
-        <div className='xl:w-400 w-20 flex flex-col justify-start mb-10 border-r-2 border-gray-100 xl:border-0 p-2 scrollable-sidebar'>
-          <div className='xl:border-b-2 border-gray-200 xl:pb-4'>
+        <div className='xl:w-300 sm:w-60 flex flex-col justify-start mb-10 border-r-2 border-gray-100 xl:border-0 p-2 scrollable-sidebar'>
+          <div className='xl:border-b border-gray-200 xl:pb-4'>
             <Link href='/'>
               <div className={pathname === '/' ? activeLink : normalLink}>
                 <p className='text-2xl'>
@@ -60,7 +58,7 @@ const Sidebar: NextPage = () => {
               <>
                 <Link href='/following'>
                   <div className={pathname === '/following' ? activeLink : normalLink}>
-                    <RiHeartFill className='text-2xl'/>
+                    <RiUserFollowLine className='text-2xl'/>
                     <span className='capitalize text-lg hidden font-bold xl:block'>Following</span>
                   </div>
                 </Link>
@@ -72,14 +70,14 @@ const Sidebar: NextPage = () => {
                 </Link>
                 <Link href='/explore'>
                   <div className={pathname === '/explore' ? activeLink : normalLink}>
-                    <AiOutlineSearch className='text-2xl'/>
+                    <MdOutlineExplore className='text-2xl'/>
                     <span className='capitalize text-lg hidden font-bold xl:block'>Explore</span>
                   </div>
                 </Link>
                 {/* Live Streams */}
                 <Link href='/live'>
                   <div className={pathname === '/live' ? activeLink : normalLink}>
-                    <MdOutlineLiveTv className='text-2xl'/>
+                    <RiLiveLine className='text-2xl'/>
                     <span className='capitalize text-lg hidden font-bold xl:block'>LIVE</span>
                   </div>
                 </Link>
@@ -121,7 +119,7 @@ const Sidebar: NextPage = () => {
             )}
               </>
           </div>
-          <Discover />
+          {/* <Discover /> */}
           <SuggestedAccounts
             fetchAllUsers={fetchAllUsers}
             allUsers={allUsers}

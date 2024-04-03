@@ -16,6 +16,8 @@ import Logo from '../utils/TikTok_logo.webp';
 import LoginModal from './LoginModal';
 import { BiMessageAltDots } from "react-icons/bi";
 import { TiLocationArrowOutline } from "react-icons/ti";
+import { MdOutlineExplore } from 'react-icons/md';
+import { RiUserFollowLine, RiLiveLine } from "react-icons/ri";
 
 const Navbar = () => {
   const [user, setUser] = useState<IUser | null>();
@@ -70,7 +72,7 @@ useEffect(() => {
   return (
     <div className='w-full flex justify-between items-center border-b-2 border-gray-200 py-1 px-4'>
       <Link href='/'>
-        <div className='w-[90px] md:w-[125px] md:h-[30px] h-[38px]'>
+        <div className='w-[90px] md:w-[125px] md:h-[32px] h-[30px] sm:w-[200px] sm:h-[40px]'>
           <Image
             className='cursor-pointer'
             src={Logo}
@@ -127,11 +129,17 @@ useEffect(() => {
             <div onMouseEnter={cancelHideDropdown} className="font-semibold text-md absolute mt-[22rem] right-0 w-48 bg-white rounded-md shadow-xl py-1 z-50">
                 <Link href={`/profile/${user._id}`}>
                   <a className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"><AiOutlineUser className='inline ml-1 text-2xl mr-1' /> View profile</a></Link>
-                <Link href="/following"><a className="block px-4 py-2 text-gray-700 hover:bg-gray-100"><RiHeartFill className="inline ml-1 text-2xl mr-1"/> Following</a></Link>
+                <Link href="/following"><a className="block px-4 py-2 text-gray-700 hover:bg-gray-100"><RiUserFollowLine className="inline ml-1 text-2xl mr-1"/> Following</a></Link>
                 <Link href="/friends"><a className="block px-4 py-2 text-gray-700 hover:bg-gray-100"><FiUsers className="inline ml-1 text-2xl mr-1"/> Friends</a></Link>
-                <Link href="/explore"><a className="block px-4 py-2 text-gray-700 hover:bg-gray-100"><AiOutlineSearch className="inline ml-1 text-2xl mr-1"/> Explore</a></Link>
-                <Link href="/live"><a className="block px-4 py-2 text-gray-700 hover:bg-gray-100"><MdOutlineLiveTv className="inline ml-1 text-2xl mr-1"/> LIVE</a></Link>
-                <Link href="/settings"><a className="block px-4 py-2 text-gray-700 hover:bg-gray-100"><AiOutlineSetting className="inline ml-1 text-2xl mr-1"/> Settings</a></Link>
+                <Link href="/explore"><a className="block px-4 py-2 text-gray-700 hover:bg-gray-100"><MdOutlineExplore className="inline ml-1 text-2xl mr-1"/> Explore</a></Link>
+                <Link href="/live"><a className="block px-4 py-2 text-gray-700 hover:bg-gray-100"><RiLiveLine className="inline ml-1 text-2xl mr-1"/> LIVE</a></Link>
+                <a
+                  onClick={(e) => e.preventDefault()}
+                  className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-not-allowed opacity-50"
+                  aria-disabled="true"
+                >
+                  <AiOutlineSetting className="inline ml-1 text-2xl mr-1"/> Settings
+                </a>
                 <button
                   onClick={(e) => {
                     googleLogout();

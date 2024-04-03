@@ -20,11 +20,11 @@ export const topics = [
   { name: 'education', icon: <MdSchool /> },
 ];
 
-export const footerList1 = ['About', 'Newsroom', 'Store', 'Contact', 'Careers', 'ByteDance', 'Creator Directory'];
+export const footerList1 = ['About', 'Newsroom', 'Contact', 'Careers'];
 
-export const footerList2 = ['TikTok for Good', 'Advertise', 'Developers', 'Transparency', 'TikTok Rewards'];
+export const footerList2 = ['TikTok for Good', 'Advertise', 'TikTok LIVE Creator Networks', 'Developers', 'Transparency', 'TikTok Rewards','TikTok Embeds'];
 
-export const footerList3 = ['Help', 'Safety', 'Terms', 'Privacy', 'Creator Portal', 'Community Guidelines'];
+export const footerList3 = ['Help', 'Safety', 'Terms', 'Privacy Policy', 'Privacy Center', 'Creator Portal', 'Community Guidelines'];
 
 // New addition to match a broad categorization seen in platforms like TikTok
 export const footerList4 = ['Languages', 'Culture', 'Sports', 'Science & Education', 'Travel', 'Beauty & Fashion'];

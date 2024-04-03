@@ -5,6 +5,7 @@ import VideoCard from '../components/ExploreVideos';
 import NoResults from '../components/NoResults';
 import { BASE_URL } from '../utils';
 import { Video } from '../types';
+import Discover from '../components/Discover';
 
 interface IProps {
   videos: Video[];
@@ -13,6 +14,9 @@ interface IProps {
 const Home = ({ videos }: IProps) => {
   return (
     <div className=''>
+          <div >
+    <Discover />
+    </div>
       {videos.length ? (
         <div className='grid grid-cols-1 md:grid-cols-4 gap-4 p-1'>
           {videos.map((video: Video) => (

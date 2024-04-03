@@ -58,8 +58,8 @@ const VideoCard: NextPage<IProps> = ({ post: { caption, postedBy, video, _id, li
             loop
             ref={videoRef}
             src={video.asset.url}
-            className='w-full rounded-md cursor-pointer bg-gray-100'
-            style={{width: '300px', height: '260px', objectFit: 'cover' }}
+            className='rounded-md cursor-pointer bg-gray-100'
+            style={{width: '200px', height: '260px', objectFit: 'cover' }}
           ></video>
         </Link>
 

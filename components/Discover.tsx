@@ -9,7 +9,7 @@ import { topics } from '../utils/constants';
 const Discover: NextPage = () => {
   const router = useRouter();
   const { topic } = router.query;
-  const scrollRef = useRef(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {

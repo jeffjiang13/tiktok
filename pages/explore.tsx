@@ -14,9 +14,9 @@ interface IProps {
 const Home = ({ videos }: IProps) => {
   return (
     <div className=''>
-          <div >
-    <Discover />
-    </div>
+      <div >
+      <Discover />
+      </div>
       {videos.length ? (
         <div className='grid grid-cols-1 md:grid-cols-4 gap-4 p-1'>
           {videos.map((video: Video) => (
